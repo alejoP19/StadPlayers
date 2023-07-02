@@ -82,7 +82,7 @@ function obtenerIniciales($nickname)
                                             <div class="text-center">
                                                 <a class="btn btn-sm btn-outline-primary" href="../jugadores/index.php">Regresar
                                                 </a>
-                                                <a class="btn btn-danger"
+                                                <!-- <a class="btn btn-danger"
                                                     href="../../Controllers/UsuarioController.php?c=2&id=<?= $row->getId() ?>">Eliminar
                                                 </a>
                                                 <a class="btn btn-warning"
@@ -90,7 +90,7 @@ function obtenerIniciales($nickname)
                                                 </a>
                                                 <a class="btn btn-warning"
                                                     href="../../Controllers/UsuarioController.php?c=3&id=<?= $row->getId() ?>">Actualizar
-                                                </a>
+                                                </a> -->
                                             </div>
                                             <?php
                                         }

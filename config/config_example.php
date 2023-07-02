@@ -10,5 +10,5 @@ define('DIR', dirname(__FILE__));
 define('HOST', 'localhost');
 define('DB', 'stadplayers');
 define('USER', 'root');
-define('PASSWORD', 'root');
+define('PASSWORD', '');
 define('CHARSET', 'utf8mb4');
