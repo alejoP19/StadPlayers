@@ -1,6 +1,7 @@
 <?php
 
 require_once '../Models/EstadisticasModel.php';
+// require 'ruta_a_phpmailer/PHPMailerAutoload.php';
 $estadistica = new EstadisticasController;
 
 class EstadisticasController
@@ -29,6 +30,22 @@ class EstadisticasController
                 case 5:
                     self::config();
                     break;
+                case 6:
+                    self::borrar();
+                    break;
+                case 7:
+                    self::deletepa();
+                    break;
+                case 8:
+                    self::deleteli();
+                    break;
+                case 9:
+                    self::deletequi();
+                    break;
+                case 10:
+                    self::deleteco();
+                    break;
+
 
 
                 default:
@@ -43,45 +60,45 @@ class EstadisticasController
     public function index()
     {
         return $this->estadistica->getAll();
-    }    
-    
+    }
+
     public function config()
-{
-    $equipo = $_POST['agre_equipo'];
-    $copa = $_POST['agre_copa'];
-    $pais = $_POST['agre_pais'];
-    $liga = $_POST['agre_liga'];
-    $tipoPartido = $_POST['agre_tipo_partido'];
+    {
+        $equipo = $_POST['agre_equipo'];
+        $copa = $_POST['agre_copa'];
+        $pais = $_POST['agre_pais'];
+        $liga = $_POST['agre_liga'];
+        $tipoPartido = $_POST['agre_tipo_partido'];
 
-    // Verificar que al menos un campo tenga valor
-    if (empty($equipo) && empty($copa) && empty($pais) && empty($liga) && empty($tipoPartido)) {
-        echo "Error: Debe completar al menos un campo.";
-        return;
+        // Verificar que al menos un campo tenga valor
+        if (empty($equipo) && empty($copa) && empty($pais) && empty($liga) && empty($tipoPartido)) {
+            echo "Error: Debe completar al menos un campo.";
+            return;
+        }
+
+        // Realizar la inserción en la tabla correspondiente
+        if (!empty($equipo)) {
+            $this->estadistica->configEquipo($equipo);
+        }
+        if (!empty($copa)) {
+            $this->estadistica->configCopa($copa);
+        }
+        if (!empty($pais)) {
+            $this->estadistica->configPais($pais);
+        }
+        if (!empty($liga)) {
+            $this->estadistica->configLiga($liga);
+        }
+        if (!empty($tipoPartido)) {
+            $this->estadistica->configTipoPartido($tipoPartido);
+        }
+
+        header("Location: ../Views/Configuraciones/index.php");
+        exit();
     }
 
-    // Realizar la inserción en la tabla correspondiente
-    if (!empty($equipo)) {
-        $this->estadistica->configEquipo($equipo);
-    }
-    if (!empty($copa)) {
-        $this->estadistica->configCopa($copa);
-    }
-    if (!empty($pais)) {
-        $this->estadistica->configPais($pais);
-    }
-    if (!empty($liga)) {
-        $this->estadistica->configLiga($liga);
-    }
-    if (!empty($tipoPartido)) {
-        $this->estadistica->configTipoPartido($tipoPartido);
-    }
 
-    header("Location: ../Views/Configuraciones/index.php");
-    exit();
-}
 
-    
-    
     public function store()
     {
 
@@ -156,4 +173,78 @@ class EstadisticasController
             echo "No se pudo eliminar la estadistica, !Intentalo nuevamente";
         }
     }
+
+    public function borrar()
+    {
+        $id = $_REQUEST['id'];
+        // var_dump($_REQUEST);
+        // die();
+        $result = $this->estadistica->borrar($id);
+        if ($result) {
+            header("Location: ../Views/Configuraciones/verTipoPartido.php");
+            exit();
+        } else {
+            echo "No se pudo eliminar la estadistica, !Intentalo nuevamente";
+        }
+    }
+
+    public function deletepa()
+    {
+        $id = $_REQUEST['id'];
+        // var_dump($_REQUEST);
+        // die();
+        $result = $this->estadistica->deletepa($id);
+        if ($result) {
+            header("Location: ../Views/Configuraciones/verPaises.php");
+            exit();
+        } else {
+            echo "No se pudo eliminar la estadistica, !Intentalo nuevamente";
+        }
+    }
+
+    public function deleteli()
+    {
+        $id = $_REQUEST['id'];
+        // var_dump($_REQUEST);
+        // die();
+        $result = $this->estadistica->deleteli($id);
+        if ($result) {
+            header("Location: ../Views/Configuraciones/verLiga.php");
+            exit();
+        } else {
+            echo "No se pudo eliminar la estadistica, !Intentalo nuevamente";
+        }
+    }
+
+    public function deletequi()
+    {
+        $id = $_REQUEST['id'];
+        // var_dump($_REQUEST);
+        // die();
+        $result = $this->estadistica->deletequi($id);
+        if ($result) {
+            header("Location: ../Views/Configuraciones/verEquipos.php");
+            exit();
+        } else {
+            echo "No se pudo eliminar la estadistica, !Intentalo nuevamente";
+        }
+    }
+
+    public function deleteco()
+    {
+        $id = $_REQUEST['id'];
+        // var_dump($_REQUEST);
+        // die();
+        $result = $this->estadistica->deleteco($id);
+        if ($result) {
+            header("Location: ../Views/Configuraciones/verCopas.php");
+            exit();
+        } else {
+            echo "No se pudo eliminar la estadistica, !Intentalo nuevamente";
+        }
+
+    }
+
+
+    
 }

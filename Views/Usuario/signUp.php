@@ -23,6 +23,7 @@ include_once(__DIR__ . "../../../config/rutas.php");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="../../public/assets/img/IconStadplayers.ico" />
 </head>
 
 <body class="sb-nav-fixed">
@@ -114,78 +115,64 @@ include_once(__DIR__ . "../../../config/rutas.php");
     </div>
 
     <script>
-
-if (document.querySelector("#datos")) {
-    let formulario = document.querySelector("#datos");
-    formulario.onsubmit = function (e) {
-        e.preventDefault();
-        fntGuardar();
-    }
-
-    async function fntGuardar() {
-
-        let correo = document.querySelector('#email').value;
-        let nickname = document.querySelector('#nickname').value;
-        let password = document.querySelector('#password').value;
-
-        try {
-            if (correo == "" || nickname == "" || password == "") {
-
-                Swal.fire(
-                    'Todos los campos del formulario son obligarorios',
-                    'Intentar De nuevo',
-                    'error'
-                )
-            } else {
-                Swal.fire({
-                    background: '#000000',
-                    // grow:'fullscreen',
-                    // Backdrop:true,
-                    // timer:5000,
-                    // timerProgressBar:true,
-                    title: '<b style="color:#03FFFF  ">Bienvenido!</b>',
-                    html: '<b style="color:#2ECC71  ">¡Ahora podrás iniciar sesión, haz click en OK!</b>',
-                    textColor: '#3085d6',
-                    imageUrl: 'https://mundoentrenamiento.com/wp-content/uploads/2021/01/big-data-en-el-futbol-moderno.jpg',
-                    // icon: 'success',
-                    imageWidth: '70%',
-                    imageHeight: '60%',
-                    imageAlt: 'Custom image',
-                    // width: '70%',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        const data = new FormData(formulario);
-
-                        console.log(data);
-                        let resp = fetch("../../Controllers/UsuarioController.php?c=1&id=", {
-                            
-                            method: 'POST',
-                            mode: 'cors',
-                            cache: 'no-cache',
-                            body: data
-                            
-                        })
-                        window.location.href = "../../index.php";
-                    }
-                    // Json= await rep.jason();
-                    console.log(resp);
-                });
-            }
-
-
-
-        } catch (err) {
-            alert("ocurrió un error: " + err);
-
+    if (document.querySelector("#datos")) {
+        let formulario = document.querySelector("#datos");
+        formulario.onsubmit = function(e) {
+            e.preventDefault();
+            fntGuardar();
         }
 
+        async function fntGuardar() {
 
-        // await
+            let correo = document.querySelector('#email').value;
+            let nickname = document.querySelector('#nickname').value;
+            let password = document.querySelector('#password').value;
+
+            try {
+                if (correo == "" || nickname == "" || password == "") {
+
+                    Swal.fire(
+                        'Todos los campos del formulario son obligarorios',
+                        'Intentar De nuevo',
+                        'error'
+                    )
+                } else {
+
+                    const data = new FormData(formulario);
+
+                    let resp = fetch("../../Controllers/UsuarioController.php?c=1", {
+                        method: 'POST',
+                        mode: 'cors',
+                        cache: 'no-cache',
+                        body: data
+
+                    })
+
+                    return new Promise(resp => {
+                        Swal.fire({
+                            background: '#000000',
+                            title: '<b style="color:#03FFFF">Bienvenido!</b>',
+                            html: '<b style="color:#2ECC71">¡Ahora podrás iniciar sesión, haz click en OK!</b>',
+                            imageUrl: 'https://mundoentrenamiento.com/wp-content/uploads/2021/01/big-data-en-el-futbol-moderno.jpg',
+                            imageWidth: '70%',
+                            imageHeight: '60%',
+                            imageAlt: 'Custom image',
+                            // width: '70%',
+                        }).then((resp) => {
+                            if (resp.isConfirmed) {
+                                window.location.href = "../../index.php";
+                            }
+                        });
+
+                    });
+                }
+            } catch (err) {
+                alert("ocurrió un error: " + err);
+
+            }
+        }
     }
-}
-
-
-</script>
+    </script>
 
     <?php
     include_once("../../Views/partials/footer.php");

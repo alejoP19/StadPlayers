@@ -71,18 +71,15 @@ class EstadisticasModel extends stdClass
 
     public function getPlayers()
     {
-        $items = [];
 
+        $sql = "SELECT id, nombre_completo, id_usuario FROM jugadores";
         try {
-            $sql = 'SELECT id, nombre_completo FROM jugadores ';
-
+            $items = [];
             $query = $this->db->conect()->query($sql);
-
             while ($row = $query->fetch()) {
-                $item       = new  EstadisticasModel();
-                $item->id   = $row['id'];
+                $item         = new EstadisticasModel();
+                $item->id = $row['id'];
                 $item->nombre_completo = $row['nombre_completo'];
-
                 array_push($items, $item);
             }
             return $items;
@@ -147,36 +144,59 @@ class EstadisticasModel extends stdClass
         }
     }
 
-        // trae lo que hay en la db paises
+    // trae lo que hay en la db paises
 
-        public function  getPaises()
-        {
-            return $this->nombre_pais;
-        }
-    
-        public function paises()
-        {
-            $items = [];
-        
-            try {
-                $sql = 'SELECT id, nombre_pais FROM paises';
-                $query = $this->db->conect()->query($sql);
-                while ($row = $query->fetch()) {
-                    $item           = new EstadisticasModel();
-                    $item->id       = $row['id'];
-                    $item->nombre_pais   = $row['nombre_pais'];
-        
-                    array_push($items, $item);
-                }
-                return $items;
-            } catch (PDOException $e) {
-                die($e->getMessage());
+    public function  getPaises()
+    {
+        return $this->nombre_pais;
+    }
+
+    public function paises()
+    {
+        $items = [];
+
+        try {
+            $sql = 'SELECT id, nombre_pais FROM paises';
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()) {
+                $item           = new EstadisticasModel();
+                $item->id       = $row['id'];
+                $item->nombre_pais   = $row['nombre_pais'];
+
+                array_push($items, $item);
             }
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
         }
-        
+    }
 
+    // trae lo que hay en la db Ligas
 
+    public function  getLigas()
+    {
+        return $this->nombre;
+    }
 
+    public function ligas()
+    {
+        $items = [];
+
+        try {
+            $sql = 'SELECT id, nombre FROM ligas';
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()) {
+                $item           = new EstadisticasModel();
+                $item->id       = $row['id'];
+                $item->nombre   = $row['nombre'];
+
+                array_push($items, $item);
+            }
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
 
     public function getTipoPartido()
     {
@@ -561,9 +581,92 @@ class EstadisticasModel extends stdClass
     public function delete($id)
     {
         try {
-
-
             $sql = "DELETE FROM estadisticas_encuentro WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'   => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function borrar($id)
+    {
+        try {
+            $sql = "DELETE FROM tipo_partido WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'   => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function deletepa($id)
+    {
+        try {
+            $sql = "DELETE FROM paises WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'   => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function deleteli($id)
+    {
+        try {
+            $sql = "DELETE FROM ligas WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'   => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function deletequi($id)
+    {
+        try {
+            $sql = "DELETE FROM equipos WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'   => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function deleteco($id)
+    {
+        try {
+            $sql = "DELETE FROM copas WHERE id = :id";
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id'   => $id,

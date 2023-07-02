@@ -17,7 +17,7 @@ $registros = $data->verStad();
 ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<div class="imgVer">
+<div class="imgver">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -71,12 +71,9 @@ $registros = $data->verStad();
                                         <a class="btn btn-warning" href="../Estadisticas/ver.php?id=<?= $row->id ?>">Ver</a>
 
                                         <a class="btn btn-danger" id="deleteJu" href="../../Controllers/EstadisticasController.php?c=4" data-id="<?= $row->id ?>" onclick="obtenerID(event); return false;">Eliminar</a>
-
-
-
-                            </td>
-                        </tr>
-                        <?php
+                                    </td>
+                                </tr>
+                            <?php
                                 $pos++;
                             }
                         } else {
@@ -134,38 +131,6 @@ $registros = $data->verStad();
 
         console.log("El ID del enlace es: " + id);
     }
-
-
-    // function alerta() {
-    //     Swal.fire({
-    //         title: "Estas seguro?",
-    //         text: "Una vez eliminado, ¡no podrá recuperar este archivo!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonText: "Si, eliminar!",
-    //         cancelButtonText: "No, cancelar!",
-    //         reverseButtons: true
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             Swal.fire(
-    //                 "Deleted!",
-    //                 "La estadistica ha sido eliminada.",
-    //                 "success"
-    //             ).then(() => {
-    //                 window.location.href =
-    //                     "../../Controllers/EstadisticasController.php?c=4&id=<?= $row->id ?>";
-    //             });
-    //         } else if (result.dismiss === Swal.DismissReason.cancel) {
-    //             Swal.fire(
-    //                 "Cancelado",
-    //                 "Tu estadistica esta a salvo :)",
-    //                 "error"
-    //             );
-    //         }
-    //     });
-
-    //     return false;
-    // }
 </script>
 
 
