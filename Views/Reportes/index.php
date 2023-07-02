@@ -50,88 +50,81 @@ $registros = $reportes->getAll();
                             foreach ($registros as $registro) {
 
                         ?>
-                        <tr>
-                            <td><?php echo $pos; ?></td>
-                            <td><?php echo $registro->fechaInicial ?></td>
-                            <td><?php echo $registro->fechaFinal ?></td>
-                            <td><?php echo $registro->nombre_completo ?></td>
-                            <td>
-                                <form action="../../Controllers/GenerarReportesController.php" method="post">
+                                <tr>
+                                    <td><?php echo $pos; ?></td>
+                                    <td><?php echo $registro->fechaInicial ?></td>
+                                    <td><?php echo $registro->fechaFinal ?></td>
+                                    <td><?php echo $registro->nombre_completo ?></td>
+                                    <td>
+                                        <form action="../../Controllers/GenerarReportesController.php" method="post">
 
 
-                                    <input type="hidden" name="c" value="3">
-                                    <button type="submit" name="id" value="<?= $registro->id ?>" id="id"
-                                        class="btn btn-warning btn-large">Ver
-                                        Reporte</button>
+                                            <input type="hidden" name="c" value="3">
+                                            <button type="submit" name="id" value="<?= $registro->id ?>" id="id" class="btn btn-warning btn-large">Ver
+                                                Reporte</button>
 
-                                    <a type="submit" class="btn btn-danger" id="id_reporte"
-                                        onclick="EliminarReporte(<?= $registro->id ?>)">Eliminar</a>
+                                            <a type="submit" class="btn btn-danger" id="id_reporte" onclick="EliminarReporte(<?= $registro->id ?>)">Eliminar</a>
 
-                                </form>
-                            </td>
-                        </tr>
-                        <?php $pos++;
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php $pos++;
                             }
                         } else { ?>
-                        <tr>
-                            <td colspan=" 9">No hay datos
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan=" 9">No hay datos
+                                </td>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>
-                <a type="button" class="btn btn-primary btn-lg btn-block"
-                    href="<?= BASE_URL ?>/Views/Reportes/crear.php">Generar Reporte</a>
+                <a type="button" class="btn btn-primary btn-lg btn-block" href="<?= BASE_URL ?>/Views/Reportes/crear.php">Generar Reporte</a>
             </div>
 
         </div>
     </main>
 </div>
 <script>
+    function EliminarReporte(id) {
 
 
-
-function EliminarReporte(id) {
-
-
-Swal.fire({
-    title: '¿Desea eliminar éste reporte?',
-    text: "¡Esta acción será definitiva!",
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, eliminar!'
-})
-    .then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'El Reporte ha sido eliminado definitivamente',
-                showConfirmButton: false,
+        Swal.fire({
+                title: '¿Desea eliminar éste reporte?',
+                text: "¡Esta acción será definitiva!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar!'
             })
-                .then(() => {
+            .then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'El Reporte ha sido eliminado definitivamente',
+                            showConfirmButton: false,
+                        })
+                        .then(() => {
 
-                    $.ajax({
-                        url: "../../Controllers/GenerarReportesController.php?c=2&id=" + id,
-                        success: function (r) {
-                            document.location.reload();
-                        }
-                    });
+                            $.ajax({
+                                url: "../../Controllers/GenerarReportesController.php?c=2&id=" + id,
+                                success: function(r) {
+                                    document.location.reload();
+                                }
+                            });
 
 
-                })
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-            Swal.fire('¡Reporte No Eliminado!', '', 'info')
-        }
+                        })
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire('¡Reporte No Eliminado!', '', 'info')
+                }
 
 
-    });
-return false;
-timer: 2800
-}
-
+            });
+        return false;
+        timer: 2800
+    }
 </script>
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");

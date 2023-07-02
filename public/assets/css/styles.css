@@ -54,7 +54,7 @@
   display: block;
 }
 
-.BotonIniciarSesiona span:nth-child(1) {
+.BotonIniciarSesion span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
@@ -62,6 +62,83 @@
   background: linear-gradient(90deg, transparent, #03e9f4);
   animation: btn-anim1 1% linear infinite;
 }
+
+.BotonRecuperarContraseña   button a {
+  font-family: "Russo One";
+  position: relative;
+  display: inline-block;
+  padding: 3px 10px;
+  color: #03f494;
+  font-size: 17px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5%;
+  margin-top: 1px;
+  margin-bottom: -3px;
+  letter-spacing: 1px;
+ 
+  
+}
+
+.BotonRecuperarContraseña  button a:hover {
+  background: #7affcc;
+  color: #ff0048;
+  text-shadow: 2px -2px 3px #3a353e;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+    0 0 25px #03e9f4,
+    0 0 50px #03e9f4,
+    0 0 100px #03e9f4;
+}
+
+.BotonRecuperarContraseña  a span a {
+  position: absolute;
+  display: block;
+}
+
+
+
+
+
+
+
+.BotonIr button a {
+  background-color: #ffffff;
+  font-family: "Russo One";
+  position: relative;
+  display: inline-block;
+  padding: 3px 10px;
+  color: #000000;
+  font-size: 17px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5%;
+  margin-top: 1px;
+  margin-bottom: -3px;
+  letter-spacing: 1px;
+  border-radius: 10px;
+ 
+  
+}
+
+.BotonIr  button a:hover {
+  background: #000000;
+  color: #ffffff;
+  text-shadow: 2px -2px 3px #22ff00 ;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #fff700,
+    0 0 25px #03e9f4,
+    0 0 50px #03e9f4,
+    0 0 100px #03e9f4;
+}
+
+.BotonIr  a span a {
+  position: absolute;
+  display: block;
+}
+
 
 .sb-topnavLogin {
   padding-left: 0;
@@ -167,6 +244,32 @@ form .containerTitulo {
 
 @media screen and (max-width: 972px) {
   .ImgCrearUsuario {
+    height: 120%;
+
+  }
+}
+.ImgRecuperarContraseña{
+
+  background: url(../../assets/img/password.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-bottom: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+
+}
+
+@media screen and (max-width: 972px) {
+  .ImgRecuperarContraseña {
     height: 120%;
 
   }

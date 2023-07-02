@@ -269,23 +269,32 @@ $DatosJugador = [
                                 </div>
 
                             </div>
-                            <a type="button " class="btn btn-info mt-5 " href="<?= BASE_URL ?>/Views/Reportes/index.php">Volver</a>
-                            <div class="row mt-5 mt-5 ms-3">
-                                <div class="card-header bg-dark text-light  me-1 mt-3">
-                                    <i class="fa-solid fa-print fa-fade"></i>
-                                    Imprimir en
+
+                            <div class="row">
+                                <div class="card-header bg-dark text-light p-n3">
+
+                                    <div class="row mt-5 ">
+                                        <div class="col-lg-6 mt-4 ms-1 ">
+                                            <i class="fa-solid fa-print fa-fade"></i>
+                                            Imprimir
+                                            <form action="../../Controllers/GenerarReportesController.php" method="post">
+                                                <input type="hidden" name="c" value="6">
+                                                <button type="submit" class="btn btn-danger btn-sm" id="id" name="id" value=" <?= $datosReporte["id"] ?>">
+                                                    PDF</button>
+                                            </form>
+                                        </div>
+                                        <div class="col-lg-5  mb-5 ms-3">
+                                         <a type="button " class="btn btn-info mt-5 " href="<?= BASE_URL ?>/Views/Reportes/index.php">Volver</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-6 mt-3">
-                                        <form action="../../Controllers/GenerarReportesController.php" method="post">
-                                            <input type="hidden" name="c" value="6">
-                                        <button type="submit" class="btn btn-danger btn-sm" ref="/reporte_pdf.php" id="id_reporte" name="id_reporte" value=" <?= $datosReporte["id"] ?>">
-                                            PDF</button>
-                                        </form>
-                                    </div>
-                                    <div class="col-6 mt-3">
-                                        <button type="button" class="btn btn-primary btn-xl">
-                                            Word</button>
-                                    </div>
+
+
+
+                                <!-- <div class="col-6 mt-3">
+                                    <button type="button" class="btn btn-primary btn-xl">
+                                        Word</button>
+                                    </div> -->
                             </div>
                         </div>
                     </div>

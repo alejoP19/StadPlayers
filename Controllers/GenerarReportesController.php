@@ -11,7 +11,9 @@ class ReportesController
 {
     public $id_usuario;
     private $reportesModel;
-    private $smg;
+    public $smg;
+    public $id;
+
     public  $consultaEstadisticasPre;
     // public $consultaPromedio;
     // public $consultaTotalMinutos;
@@ -46,7 +48,7 @@ class ReportesController
 
                     break;
                 case 6:
-                    self:: showPdf();
+                    self::showPdf();
                     break;
             }
         }
@@ -133,7 +135,7 @@ class ReportesController
     {
         $id_usuario = $_SESSION['id'];
 
-        return $this->reportesModel->getPlayers($id_usuario) .
+        return $this->reportesModel->getPlayers() .
             $this->reportesModel->getById($id_usuario);
     }
 
@@ -153,31 +155,38 @@ class ReportesController
 
     public function showPdf()
     {
+
         $id_reporte = $_REQUEST['id'];
-        $reporte    = $this->reportesModel->getReporteId($id_reporte);
-        $smg        = new ReportesModel();
+        $id_usuario     = $_SESSION['id'];
 
-
-        $reporte                  = $this->smg->getReporteId($id_reporte);
-        $datosJugador             = $this->smg->DatosJugadorReporte($id_reporte);
-        $totalMinutosJugados      = $this->smg->getTotalMinutos($reporte);
-        $totalPartidosJugados     = $this->smg->getTotalPartidos($reporte);
-        $promedio                 = $this->smg->promedio($reporte);
-        $totalEstadisticasPre     = $this->smg->getTotalEstadPre($reporte);
-        $totalEstadisticasPortero = $this->smg->getTotalEstadPortero($reporte);
-        $nuevasEstadisticas       = $this->smg->getNuevaEstadistica($reporte);
-
+        $reporte                  = $this->reportesModel->getReporteId($id_reporte);
+        $datosJugador             = $this->reportesModel->DatosJugadorReporte($id_reporte);
+        $totalMinutosJugados      = $this->reportesModel->getTotalMinutos($reporte);
+        $totalPartidosJugados     = $this->reportesModel->getTotalPartidos($reporte);
+        $promedio                 = $this->reportesModel->promedio($reporte);
+        $totalEstadisticasPre     = $this->reportesModel->getTotalEstadPre($reporte);
+        $totalEstadisticasPortero = $this->reportesModel->getTotalEstadPortero($reporte);
+        $nuevasEstadisticas       = $this->reportesModel->getNuevaEstadistica($reporte);
         $params =
             http_build_query($reporte)
+            . "&usuario=" . ($id_usuario)
             . "&totalMinutosJugados="  . ($totalMinutosJugados)
             . "&totalPartidosJugados=" . ($totalPartidosJugados)
             . "&promedio="             . ($promedio)
+
             . "&" . http_build_query($datosJugador)
             . "&" . http_build_query($totalEstadisticasPre)
             . "&" . http_build_query($totalEstadisticasPortero)
             . "&" . http_build_query($nuevasEstadisticas);
 
-       return  $params;
-    }
+        // var_dump($params);
+        // die();
 
+        header(
+            "Location: ../Views/Reportes/reportePdf.php?" . $params
+        );
+        // header(
+        //     "Location: ../Views/Reportes/fpdfReporte.php?" . $params
+        // );
+    }
 }

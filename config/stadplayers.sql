@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-06-2023 a las 03:57:58
--- Versión del servidor: 8.0.32
--- Versión de PHP: 8.1.10
+-- Tiempo de generación: 02-07-2023 a las 03:12:40
+-- Versión del servidor: 8.0.30
+-- Versión de PHP: 8.1.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -130,7 +130,9 @@ INSERT INTO `estadisticas` (`id`, `nombre`, `descripcion`, `predeterminada`, `ti
 (14, 'Penales atajados', 'Por partido', 1, 1),
 (15, 'exitos en mano a mano', 'enfrentamiento directo con el delantero como ultimo hombre', 1, 1),
 (16, 'Gol de chilena', 'Remate en el aire de espaldas al arco', 0, 0),
-(18, 'faltas cometidas', 'realizar faltas al oponente', 0, 0);
+(18, 'faltas cometidas', 'realizar faltas al oponente', 0, 0),
+(19, 'goles de taco', 'hace el gol con el talon y de espaldas a la porteria', 0, 0),
+(20, 'jugadas estupidas', 'el jugador hace jugadar pendejas', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -474,7 +476,129 @@ INSERT INTO `estadisticas_count` (`id`, `valor`, `id_estadistica`, `id_encuentro
 (395, 0, 11, 27),
 (396, 0, 12, 27),
 (397, 0, 16, 27),
-(398, 0, 18, 27);
+(398, 0, 18, 27),
+(399, 11, 1, 28),
+(400, 5, 2, 28),
+(401, 3, 3, 28),
+(402, 2, 4, 28),
+(403, 7, 5, 28),
+(404, 4, 6, 28),
+(405, 4, 7, 28),
+(406, 1, 8, 28),
+(407, 93, 9, 28),
+(408, 1, 10, 28),
+(409, 1, 11, 28),
+(410, 0, 12, 28),
+(411, 0, 16, 28),
+(412, 0, 18, 28),
+(413, 7, 1, 29),
+(414, 3, 2, 29),
+(415, 1, 3, 29),
+(416, 1, 4, 29),
+(417, 11, 5, 29),
+(418, 6, 6, 29),
+(419, 4, 7, 29),
+(420, 1, 8, 29),
+(421, 40, 9, 29),
+(422, 2, 10, 29),
+(423, 0, 11, 29),
+(424, 0, 12, 29),
+(425, 1, 16, 29),
+(426, 4, 18, 29),
+(427, 1, 19, 29),
+(428, 0, 1, 30),
+(429, 0, 2, 30),
+(430, 0, 3, 30),
+(431, 0, 4, 30),
+(432, 0, 5, 30),
+(433, 0, 6, 30),
+(434, 0, 7, 30),
+(435, 0, 8, 30),
+(436, 0, 9, 30),
+(437, 0, 10, 30),
+(438, 0, 11, 30),
+(439, 0, 12, 30),
+(440, 0, 16, 30),
+(441, 0, 18, 30),
+(442, 0, 19, 30),
+(443, 9, 1, 31),
+(444, 8, 2, 31),
+(445, 2, 3, 31),
+(446, 3, 4, 31),
+(447, 5, 5, 31),
+(448, 4, 6, 31),
+(449, 2, 7, 31),
+(450, 3, 8, 31),
+(451, 3, 9, 31),
+(452, 3, 10, 31),
+(453, 2, 11, 31),
+(454, 1, 12, 31),
+(455, 1, 16, 31),
+(456, 5, 18, 31),
+(457, 3, 19, 31),
+(458, 8, 1, 32),
+(459, 3, 2, 32),
+(460, 4, 3, 32),
+(461, 2, 4, 32),
+(462, 2, 5, 32),
+(463, 1, 6, 32),
+(464, 1, 7, 32),
+(465, 0, 8, 32),
+(466, 92, 9, 32),
+(467, 2, 10, 32),
+(468, 1, 11, 32),
+(469, 0, 12, 32),
+(470, 1, 16, 32),
+(471, 3, 18, 32),
+(472, 1, 19, 32),
+(473, 9, 1, 33),
+(474, 3, 2, 33),
+(475, 6, 3, 33),
+(476, 4, 4, 33),
+(477, 4, 5, 33),
+(478, 2, 6, 33),
+(479, 1, 7, 33),
+(480, 1, 8, 33),
+(481, 92, 9, 33),
+(482, 4, 10, 33),
+(483, 2, 11, 33),
+(484, 1, 12, 33),
+(485, 1, 16, 33),
+(486, 7, 18, 33),
+(487, 0, 19, 33),
+(503, 3, 13, 35),
+(504, 1, 14, 35),
+(505, 4, 15, 35),
+(506, 6, 1, 35),
+(507, 1, 2, 35),
+(508, 1, 3, 35),
+(509, 0, 4, 35),
+(510, 4, 5, 35),
+(511, 2, 6, 35),
+(512, 1, 7, 35),
+(513, 1, 8, 35),
+(514, 91, 9, 35),
+(515, 0, 10, 35),
+(516, 1, 11, 35),
+(517, 0, 12, 35),
+(518, 0, 16, 35),
+(519, 0, 18, 35),
+(520, 0, 19, 35),
+(521, 0, 1, 36),
+(522, 0, 2, 36),
+(523, 0, 3, 36),
+(524, 0, 4, 36),
+(525, 0, 5, 36),
+(526, 0, 6, 36),
+(527, 0, 7, 36),
+(528, 0, 8, 36),
+(529, 0, 9, 36),
+(530, 0, 10, 36),
+(531, 0, 11, 36),
+(532, 0, 12, 36),
+(533, 0, 16, 36),
+(534, 0, 18, 36),
+(535, 0, 19, 36);
 
 -- --------------------------------------------------------
 
@@ -519,7 +643,15 @@ INSERT INTO `estadisticas_encuentro` (`id`, `fecha_del_partido`, `numero_partido
 (24, '2023-05-28', 0, 3, 6, 6, 3),
 (25, '2023-05-16', 1, 1, 6, 1, 1),
 (26, '2023-06-13', 1, 3, 5, 4, 1),
-(27, '2012-12-12', 1, 1, 1, 2, 1);
+(27, '2012-12-12', 1, 1, 1, 2, 1),
+(28, '2023-07-15', 1, 1, 18, 2, 23),
+(29, '2023-08-08', 2, 1, 18, 4, 23),
+(30, '2022-02-12', 15, 3, 7, 5, 1),
+(31, '2010-10-10', 18, 1, 18, 8, 23),
+(32, '2020-07-02', 13, 1, 19, 4, 1),
+(33, '2019-03-25', 18, 1, 19, 3, 1),
+(35, '2022-07-19', 14, 1, 5, 1, 1),
+(36, '2010-10-10', 18, 2, 17, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -545,7 +677,13 @@ INSERT INTO `generar_reporte` (`id`, `fecha_inicial`, `fecha_final`, `id_jugador
 (30, '2023-06-12', '2023-10-10', 6, 1),
 (39, '2021-05-02', '2023-11-13', 5, 1),
 (40, '2022-03-10', '2023-05-28', 6, 1),
-(41, '2016-07-22', '2016-08-23', 1, 1);
+(41, '2016-07-22', '2016-08-23', 1, 1),
+(43, '2023-07-15', '2023-08-08', 18, 23),
+(44, '0017-02-02', '2023-03-03', 5, 1),
+(48, '2010-06-12', '2023-06-14', 1, 1),
+(49, '2023-05-29', '2023-06-13', 1, 1),
+(50, '2023-06-27', '2023-06-27', 20, 1),
+(51, '2023-06-26', '2010-07-11', 12, 1);
 
 -- --------------------------------------------------------
 
@@ -598,16 +736,18 @@ INSERT INTO `jugadores` (`id`, `nombre_completo`, `apodo`, `fecha_nacimiento`, `
 (1, 'Rosito Mañaneiros', 'El 3am', '1999-10-14', NULL, 1, 3, 1, 5, 3, 6, 1),
 (2, 'David Hernandez', 'La Cachaza', '1998-08-23', NULL, 2, 4, 1, 3, 1, 5, 1),
 (5, 'Kevin Mier', 'La Araña', '2000-02-15', NULL, 1, 1, 1, 4, 1, 1, 1),
-(6, 'Dorlan Pavon', 'Memín', '2000-05-22', NULL, 1, 1, 1, 3, 1, 9, 1),
+(6, 'Dorlan Pavon', 'Memín', '2000-05-22', '', 1, 5, 1, 3, 1, 9, 1),
 (7, 'Albert Hass', 'El lentejo', '1999-12-23', NULL, 1, 5, 4, 8, 2, 3, 1),
 (8, 'Alan Brito Delgado', 'El Flaco', '2003-05-02', NULL, 3, 3, 2, 4, 1, 5, 2),
 (9, 'Guillermo Nigote', 'El Nadies', '2008-07-06', NULL, 3, 7, 5, 8, 4, 9, 2),
 (10, 'Elvio Lao', 'El suave', '2005-08-10', NULL, 2, 4, 5, 6, 4, 10, 2),
-(11, 'Aquiles Castro', 'La Gillotina', '2008-09-17', NULL, 2, 5, 3, 7, 5, 11, 1),
 (12, 'santiago cristancho', 'el cofla', '2004-02-10', 'el puntual', 1, 6, 3, 6, 4, 3, 3),
 (13, 'Aquiles Castro Bueno', 'La guillotina', '2002-02-10', 'Rápido y inmisericorde', 21, 7, 2, 6, 5, 6, 1),
 (14, 'Guillermo Nigote', 'El titere', '2011-02-10', 'Invisible', 21, 2, 1, 2, 1, 1, 2),
-(17, 'Santiago del paso', 'la loca', '2004-06-22', 'loca por naturaleza', 21, 6, 3, 7, 3, 7, 2);
+(17, 'Santiago del paso', 'la loca', '2004-06-22', 'loca por naturaleza', 21, 6, 3, 7, 3, 7, 2),
+(18, 'Alberth Hass', 'lentejo', '2012-02-10', 'rapado', 23, 5, 3, 6, 3, 11, 2),
+(19, 'Alberth Hass', 'lentejo', '2006-06-25', 'rapado', 1, 8, 4, 2, 1, 13, 1),
+(20, 'walter Riaño', 'El torombolo', '2010-02-25', 'pendejo por naturaleza', 1, 4, 1, 2, 1, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -648,7 +788,67 @@ CREATE TABLE `numero_partido` (
 --
 
 INSERT INTO `numero_partido` (`id`, `num_partido`) VALUES
-(1, 1);
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10),
+(11, 11),
+(12, 12),
+(13, 13),
+(14, 14),
+(15, 16),
+(16, 17),
+(17, 18),
+(18, 19),
+(19, 20),
+(20, 21),
+(21, 22),
+(22, 23),
+(23, 24),
+(24, 25),
+(25, 26),
+(26, 27),
+(27, 28),
+(28, 29),
+(29, 30),
+(30, 31),
+(31, 32),
+(32, 33),
+(33, 34),
+(34, 35),
+(35, 36),
+(36, 37),
+(37, 38),
+(38, 39);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `olvido_password`
+--
+
+CREATE TABLE `olvido_password` (
+  `id` bigint UNSIGNED NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `olvido_password`
+--
+
+INSERT INTO `olvido_password` (`id`, `email`, `token`) VALUES
+(290, 'alejoecheverry33@gmail.com', '3e222481ab92e5484baff0a088df589e64a08df2872bc'),
+(291, 'alejoecheverry33@gmail.com', 'c30a820aac4a5aa9e87b747ab27485bf64a08e9cef0eb'),
+(292, 'alejoecheverry33@gmail.com', 'a2a1da23bede3485ffd3976bd83a458964a08ed56c5c1'),
+(293, 'alejoecheverry33@gmail.com', '4a0ac42548ab2755a3b157c68fdf8f3964a0a249ccce4'),
+(294, 'alejoecheverry33@gmail.com', '6223b85ffc6c07350fcca3d673c9f25064a0e6c00503d');
 
 -- --------------------------------------------------------
 
@@ -765,7 +965,8 @@ CREATE TABLE `titulos_jugador` (
 --
 
 INSERT INTO `titulos_jugador` (`id`, `fecha`, `id_equipo`, `id_copa`, `id_jugador`) VALUES
-(7, '2011-06-20 00:00:00', 4, 7, 12);
+(7, '2011-06-20 00:00:00', 4, 7, 12),
+(8, '2023-07-20 00:00:00', 1, 5, 8);
 
 -- --------------------------------------------------------
 
@@ -785,11 +986,14 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `Email`, `nickname`, `password`) VALUES
-(1, 'josecanseco@gmail', 'jose45', '123456'),
-(2, 'asher@gmail', 'perritoal100%', '7777777'),
-(3, 'canela@cansanciogmail.com', 'saltarina123', '333333'),
+(1, 'josecanseco@gmail', 'jose45', 'e10adc3949ba59abbe56e057f20f883e'),
+(2, 'asher@gmail', 'perritoal100%', '81dc9bdb52d04dc20036dbd8313ed055'),
+(3, 'canela@cansanciogmail.com', 'saltarina123', '8ddcff3a80f4189ca1c9d4d902c3c909'),
 (21, 'pepita@gmail.com', 'peputa', 'e10adc3949ba59abbe56e057f20f883e'),
-(22, 'santiago@gmail.com', 'santi23', '25f9e794323b453885f5181f1b624d0b');
+(23, 'alejoecheverry33@gmail.com', 'alejoP19', 'e10adc3949ba59abbe56e057f20f883e'),
+(26, 'StadplayersGroup@gmail.com', 'adsi2023', 'b66dc44cd9882859d84670604ae276e6'),
+(27, 'lamaszorra@gmail.com', 'ramera2023', '7d0710824ff191f6a0086a7e3891641e'),
+(28, 'elcacas@gmail.com', 'petroidiota2023', '202cb962ac59075b964b07152d234b70');
 
 --
 -- Índices para tablas volcadas
@@ -879,6 +1083,12 @@ ALTER TABLE `numero_partido`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `olvido_password`
+--
+ALTER TABLE `olvido_password`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `paises`
 --
 ALTER TABLE `paises`
@@ -943,25 +1153,25 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `estadisticas`
 --
 ALTER TABLE `estadisticas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `estadisticas_count`
 --
 ALTER TABLE `estadisticas_count`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=399;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=536;
 
 --
 -- AUTO_INCREMENT de la tabla `estadisticas_encuentro`
 --
 ALTER TABLE `estadisticas_encuentro`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `generar_reporte`
 --
 ALTER TABLE `generar_reporte`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_equipos`
@@ -973,7 +1183,7 @@ ALTER TABLE `historial_equipos`
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `ligas`
@@ -985,7 +1195,13 @@ ALTER TABLE `ligas`
 -- AUTO_INCREMENT de la tabla `numero_partido`
 --
 ALTER TABLE `numero_partido`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT de la tabla `olvido_password`
+--
+ALTER TABLE `olvido_password`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=295;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
@@ -1015,13 +1231,13 @@ ALTER TABLE `tipo_partido`
 -- AUTO_INCREMENT de la tabla `titulos_jugador`
 --
 ALTER TABLE `titulos_jugador`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Restricciones para tablas volcadas
@@ -1055,7 +1271,7 @@ ALTER TABLE `generar_reporte`
 --
 ALTER TABLE `historial_equipos`
   ADD CONSTRAINT `FK_equipo_id_historial_equipos_id` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`),
-  ADD CONSTRAINT `FK_jugador_id_historial_equipos_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`);
+  ADD CONSTRAINT `FK_jugador_id_historial_equipos_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `jugadores`
@@ -1075,7 +1291,7 @@ ALTER TABLE `jugadores`
 ALTER TABLE `titulos_jugador`
   ADD CONSTRAINT `FK_copas_id_titulos_jugador_id` FOREIGN KEY (`id_copa`) REFERENCES `copas` (`id`),
   ADD CONSTRAINT `FK_equipos_id_titulos_jugador_id` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`),
-  ADD CONSTRAINT `FK_jugador_id_titulos_jugador_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`);
+  ADD CONSTRAINT `FK_jugador_id_titulos_jugador_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

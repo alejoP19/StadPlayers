@@ -6,19 +6,27 @@ class UsuarioModel
 {
     public $id;
     public $email;
+    public $emailToken;
+    public $DbEmail;
     public $nickname;
     public $password;
     public $message;
     public $results;
+    public $token;
+    public $myEmail;
     private $db;
 
     public function __construct()
     {
         $this->email;
+        $this->emailToken;
         $this->nickname;
         $this->password;
         $this->message;
         $this->results;
+        $this->DbEmail;
+        $this->token;
+        $this->myEmail;
         //Instanciar la base de datos en el constructor para poder realizar consultas
         $this->db = new Database();
     }
@@ -28,29 +36,30 @@ class UsuarioModel
     {
 
         try {
+            $password = md5($_POST['password']);
 
-            if (!empty($_POST['email']) && !empty($_POST['nickname']) && !empty($_POST['password']) && strlen($_POST['password']) >= 8) {
+            $sql = 'INSERT INTO usuarios ( email, nickname,password) VALUES (:email, :nickname, :password)';
+            $prepare = $this->db->conect()->prepare($sql);
 
-                $password = md5($_POST['password']);
-                
-                $sql = 'INSERT INTO usuarios ( email, nickname,password) VALUES (:email, :nickname, :password)';
-                $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'email'    => $datos['email'],
+                'nickname' => $datos['nickname'],
+                'password' => $password,
+            ]);
 
-                $query = $prepare->execute([
-                    'email'    => $datos['email'],
-                    'nickname' => $datos['nickname'],
-                    'password' => $password,
-                ]);
+            if ($query) {
                 return true;
             }
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
+
     public function getUser($datos)
     {
 
-        $pass = ($_POST['password']);
+        $pass = md5($datos['password']);
+        // $pass = ($datos['password']);
         try {
 
             $sql = 'SELECT id, Email, password FROM usuarios WHERE Email = :email AND password = :password';
@@ -67,7 +76,7 @@ class UsuarioModel
             die($e->getMessage());
         }
     }
-    
+
     public function getAll()
     {
         $items = [];
@@ -84,7 +93,7 @@ class UsuarioModel
                 $item->email                =  $row['email'];
                 $item->nickname             =  $row['nickname'];
                 $item->password             =  $row['password'];
-                
+
 
                 array_push($items, $item);
             }
@@ -94,4 +103,65 @@ class UsuarioModel
             die($e->getMessage());
         }
     }
+
+    // public function getEmail($email)
+    // {
+    //     $this->email = $email;
+    //     try {
+    //         $sql = 'SELECT * FROM usuarios WHERE Email = :email';
+    //         $query = $this->db->conect()->prepare($sql);
+
+    //         $query->bindParam(':email', $this->email);
+    //         $query->execute();
+    //         $results = $query->fetchObject();
+
+    //         if ($results) {
+    //             $token = uniqid(md5(time()));
+    //             $inser_query = "INSERT INTO olvido_password(email,token) VALUES('$this->email','$token')";
+    //             $res  = $this->db->conect()->query($inser_query);
+
+
+    //             $to = $email;
+    //             $subject = "Link de Recuperar contraseña";
+    //             $msg = 'Has Click <a href="http://localhost/stadPlayers/index.php/Views/Usuario/nuevacontraseña.php?token=' . $token . '">Aquí<a/>para restaurar tu contraseña ';
+    //             $message = "Email:" . $email . "\n\n" . " " . $msg;
+    //             $headers = "MIME-version:1.0" . "\r\n";
+    //             $headers .= 'content-type: text/html; charset =UTF-8' . "\r\n";
+    //             $headers .= "from" . $email;
+
+    //             if (mail($to, $subject, $message, $headers)) {
+    //                 echo "se ha enviado un Link de restablecer contraseña a tu correo";
+    //             } else {
+    //                 echo "¡Ups! Algo salió mal al enviar, Intenta de Nuevo";
+    //             }
+
+    //             echo "Has Click <a href='../../Views/Usuario/nuevacontraseña.php?token=$token'>Aquí<a/>para restaurar tu contraseña ";
+    //         } else {
+
+    //             echo "Usuario No Existe";
+    //         }
+
+
+    //             echo "Has Click <a href='../../Views/Usuario/nuevacontraseña.php?token=$token'>Aquí<a/>para restaurar tu contraseña ";
+    //         } else {
+
+    //             echo "Usuario No Existe";
+    //         }
+    //     } catch (PDOException $e) {
+    //         die($e->getMessage());
+    //     }
 }
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+// lalocadekevin@gmail.com
