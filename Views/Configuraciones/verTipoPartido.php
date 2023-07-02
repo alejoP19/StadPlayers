@@ -7,7 +7,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 include_once __DIR__ . "../../../Models/EstadisticasModel.php";
 
 $data = new EstadisticasModel();
-$equipos = $data->equipos();
+$tipo = $data->TipoPartido();
 
 
 ?>
@@ -17,25 +17,24 @@ $equipos = $data->equipos();
             <div class="col d-flex justify-content-center" >
                 <div class="table-responsive " style="width: 50%;">
                     <table class="table table-dark table-striped text-info fs-5" >
-                        <!-- Cambio en la propiedad width -->
                         <thead class="fs-3">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col" style="width: 45%">Equipos</th>
+                                <th scope="col" style="width: 45%">Pais</th>
                                 <th scope="col" style="width: 25%">Opcion</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $pos = 1;
-                            if ($equipos) {
-                                foreach ($equipos as $row) {
+                            if ($tipo) {
+                                foreach ($tipo as $row) {
                             ?>
                                     <tr>
                                         <td><?= $pos ?></td>
-                                        <td><?= $row->equipo ?></td>
+                                        <td><?= $row->nombre?></td>
                                         <td>
-                                            <a class="btn btn-danger" id="deletequi" href="../../Controllers/EstadisticasController.php?c=9" data-id="<?= $row->id ?>" onclick="obtenerqui(event); return false;">Eliminar</a>
+                                            <a class="btn btn-danger" id="deleteTi" href="../../Controllers/EstadisticasController.php?c=6" data-id="<?= $row->id ?>" onclick="obtener(event); return false;">Eliminar</a>
                                         </td>
                                     </tr>
                                 <?php
@@ -52,7 +51,7 @@ $equipos = $data->equipos();
                         </tbody>
                     </table>
                     <div class="col mt-4">
-                        <a href="index.php" class="btn btn-warning btn-block" id="btn_equipos">regresar</a>
+                        <a href="index.php" class="btn btn-warning btn-block" id="btn_copas">regresar</a>
                     </div>
                 </div>
             </div>
@@ -60,7 +59,7 @@ $equipos = $data->equipos();
     </div>
 </div>
 <script>
-    function obtenerqui(event) {
+    function obtener(event) {
         event.preventDefault(); // Evita que el enlace se abra de inmediato
 
         var elemento = event.target; // Obtiene el elemento que desencadenó el evento (en este caso, el enlace)
@@ -68,7 +67,7 @@ $equipos = $data->equipos();
 
         Swal.fire({
             title: "¿Estás seguro?",
-            text: "Se eliminara este equipo!",
+            text: "Se eliminara el tipo de partido!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Sí, eliminar",
@@ -78,11 +77,11 @@ $equipos = $data->equipos();
             if (result.isConfirmed) {
                 Swal.fire(
                     "¡Eliminado!",
-                    "Se ha eliminado el equipo",
+                    "Tipo de partido elimanado",
                     "success"
                 ).then(() => {
                     // Redirige a la URL con el ID eliminado
-                    window.location.href = "../../Controllers/EstadisticasController.php?c=9&id=" + id;
+                    window.location.href = "../../Controllers/EstadisticasController.php?c=6&id=" + id;
                 });
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire(
@@ -96,9 +95,6 @@ $equipos = $data->equipos();
         console.log("El ID del enlace es: " + id);
     }
 </script>
-
-
-
 
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");

@@ -48,14 +48,14 @@ include_once __DIR__ . "../../../Models/EstadisticasModel.php";
                                         <label for="agre_liga" class="text-center">Agregar Liga</label>
                                         <input type="text" name="agre_liga" id="agre_liga" class="rounded w-100">
                                         <div class="col mt-4">
-                                            <a href=""class="btn btn-warning btn-block" id="btn_equipos">Ver tipos ligas</a>
+                                            <a href="verLiga.php"class="btn btn-warning btn-block" id="btn_equipos">Ver tipos ligas</a>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <label for="agre_tipo_partido" class="text-center">Agregar Tipo Partido</label>
                                         <input type="text" name="agre_tipo_partido" id="agre_tipo_partido" class="rounded w-100">
                                         <div class="col mt-4">
-                                            <a href=""class="btn btn-warning btn-block" id="btn_equipos">Ver tipos de partido</a>
+                                            <a href="verTipoPartido.php"class="btn btn-warning btn-block" id="btn_equipos">Ver tipos de partido</a>
                                         </div>
                                     </div>
                                 </div>
@@ -72,20 +72,25 @@ include_once __DIR__ . "../../../Models/EstadisticasModel.php";
 </div>
 
 <script>
-    function validateForm() {
-        var equipo = document.getElementById('agre_equipo').value;
-        var copa = document.getElementById('agre_copa').value;
-        var pais = document.getElementById('agre_pais').value;
-        var liga = document.getElementById('agre_liga').value;
-        var tipoPartido = document.getElementById('agre_tipo_partido').value;
+  function validateForm() {
+    var equipo = document.getElementById('agre_equipo').value;
+    var copa = document.getElementById('agre_copa').value;
+    var pais = document.getElementById('agre_pais').value;
+    var liga = document.getElementById('agre_liga').value;
+    var tipoPartido = document.getElementById('agre_tipo_partido').value;
 
-        if (equipo === '' && copa === '' && pais === '' && liga === '' && tipoPartido === '') {
-            swal("Error", "Por favor, complete al menos uno de los campos.", "error");
-            return false;
-        }
-
-        return true;
+    if (equipo === '' && copa === '' && pais === '' && liga === '' && tipoPartido === '') {
+      // Utiliza SweetAlert2 para mostrar una alerta
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, complete al menos uno de los campos.'
+      });
+      return false;
     }
+
+    return true;
+  }
 </script>
 
 

@@ -34,7 +34,7 @@ $copa = $data->copas();
                                         <td><?= $pos ?></td>
                                         <td><?= $row->nombre ?></td>
                                         <td>
-                                            <a class="btn btn-danger" id="deleteJu" href="../../Controllers/EstadisticasController.php?c=4" data-id="<?= $row->id ?>" onclick="obtenerID(event); return false;">Eliminar</a>
+                                            <a class="btn btn-danger" id="deleteco" href="../../Controllers/EstadisticasController.php?c=10" data-id="<?= $row->id ?>" onclick="obtenerco(event); return false;">Eliminar</a>
                                         </td>
                                     </tr>
                                 <?php
@@ -59,7 +59,43 @@ $copa = $data->copas();
     </div>
 </div>
 
+<script>
+    function obtenerco(event) {
+        event.preventDefault(); // Evita que el enlace se abra de inmediato
 
+        var elemento = event.target; // Obtiene el elemento que desencadenó el evento (en este caso, el enlace)
+        var id = elemento.dataset.id; // Obtiene el ID del atributo de datos personalizado
+
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Se eliminara esta copa,!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "No, cancelar",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    "¡Eliminado!",
+                    "Se ha eliminado la copa ",
+                    "success"
+                ).then(() => {
+                    // Redirige a la URL con el ID eliminado
+                    window.location.href = "../../Controllers/EstadisticasController.php?c=10&id=" + id;
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    "Cancelado",
+                    "Tu estadística está a salvo",
+                    "error"
+                );
+            }
+        });
+
+        console.log("El ID del enlace es: " + id);
+    }
+</script>
 
 
 
