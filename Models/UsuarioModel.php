@@ -57,9 +57,11 @@ class UsuarioModel
 
     public function getUser($datos)
     {
+        // var_dump($datos);
+        // die();
 
         $pass = md5($datos['password']);
-        // $pass = ($datos['password']);
+
         try {
 
             $sql = 'SELECT id, Email, password FROM usuarios WHERE Email = :email AND password = :password';

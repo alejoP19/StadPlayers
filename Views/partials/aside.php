@@ -171,7 +171,7 @@
                             </a>
 
 
-                            <a class="nav-link" href="">
+                            <!-- <a class="nav-link" href="">
                                 <i class="fa-solid fa-book fa-beat-fade" style="
                                          color:#37FF01;
                                          font-size: 14px;
@@ -179,11 +179,11 @@
                                        ">
                                 </i>
                                 <h3>Manual</h3>
-                            </a>
+                            </a> -->
 
                             <a class="nav-link" href="<?= BASE_URL ?>/Views/Sugerencias/index.php">
-                                <i class="fa-solid fa-gears fa-spin-pulse" style="color: rgb(251, 255, 4);
-                                     font-size: 14px;  
+                                <i class="fa-solid fa-envelope fa-bounce" style="color:#33A3FF;
+                                     font-size: 18px;  
                                      padding: 5%;">
                                 </i>
                                 <h3>Sugerencias</h3>

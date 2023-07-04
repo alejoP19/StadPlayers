@@ -1,22 +1,34 @@
 <?php
-
-require_once '../Models/UsuarioModel.php';
+session_start();
+include_once(__DIR__ . "../../config/rutas.php");
+require_once __DIR__ . '../../Models/UsuarioModel.php';
+require_once __DIR__ . "../../Models/GenerarReportesModel.php";
+// require_once '../Models/UsuarioModel.php';
 
 
 //Instanciando la clase CalculadoraController
 $usuario = new UsuarioController();
+$reportes = new ReportesModel();
+
 
 class UsuarioController
 {
   private $usuarioModel;
+  private $ReportesModel;
   public $email;
   public $DbEmail;
+  public $reportes;
+  public $send_idUsu;
   public function __construct()
   {
 
     $this->usuarioModel = new UsuarioModel();
+    $this->ReportesModel = new ReportesModel();
     $this->email;
     $this->DbEmail;
+    $this->reportes;
+    $this->send_idUsu;
+
 
     if (isset($_REQUEST['c'])) {
       $controlador = $_REQUEST['c'];
@@ -57,21 +69,17 @@ class UsuarioController
     return $result;
   }
 
+
+
   public function InciarSesion()
   {
 
     $datos = [
-      'email'     => $_REQUEST['email'],
-      'password'  => $_REQUEST['password'],
+      'email'     => $_REQUEST["email"],
+      'password' => $_REQUEST["password"],
     ];
-
-
-
     // var_dump($datos);
     // die();
-
-    // echo "<hr>";
-
 
     if (empty($datos['email']) || empty($datos['password'])) {
     } else {
@@ -79,12 +87,21 @@ class UsuarioController
       $results = $this->usuarioModel->getUser($datos);
 
       if ($results) {
-        session_start();
+
 
         $_SESSION['id']       = $results->id;
         $_SESSION['email']    = $results->Email;
+        $sess =  $_SESSION['id'];
+        $password =  $_SESSION['password'];
+
+
+        // $IdUsu = $this->ReportesModel->getById($sess);
+        // var_dump($IdUsu);
+        // die();
+
 
         header('Location: ../Views/main/MenuPrincipal.php');
+        // return $IdUsu;
       } else {
 
         echo " <div style='color:red'> <strong><h1>¡Ups! Algo salió mal.<h1></strong></div>" . '<br>' . '<br>';
@@ -95,12 +112,21 @@ class UsuarioController
   }
 
 
+
   public function cerrarSesion()
   {
-    session_start();
-    session_unset();
-    session_destroy();
-    header('Location: ../index.php');
+    $id = $_REQUEST['id_session'];
+
+    // var_dump($id);
+    // die();
+    if (!empty($id)) {
+      session_start();
+      session_unset();
+      session_destroy();
+      // header('Location: ../index.php');
+
+      # code...
+    }
 
     // error_reporting(0);
 

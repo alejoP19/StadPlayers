@@ -64,7 +64,7 @@ text-decoration-color: aqua">
                                     <div class="form-group mb-4">
                                         <input class="form-control form-control-lg" type="email" name="email">
                                         <strong><label class="form-label" for="email-2"
-                                                style="font-family:Russo One; color:#9bdaff;">Correo/Nickname</label></strong>
+                                                style="font-family:Russo One; color:#9bdaff;">Correo</label></strong>
                                     </div>
 
                                     <div class="form-outline mb-4">

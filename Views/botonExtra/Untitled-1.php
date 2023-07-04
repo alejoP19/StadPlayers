@@ -1,1 +1,0 @@
-$_SESION['id_usuario'] = $usuairo->id
