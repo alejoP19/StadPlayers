@@ -1,1 +1,1 @@
-$_SESION['id_usuario'] = $usuairo->id
+<!-- $_SESION['id_usuario'] = $usuairo->id -->

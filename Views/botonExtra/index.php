@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['id'])) {
     header("Location: ../../index.php");
-    exit(); // Agregamos exit() para detener la ejecución del código después de redireccionar
+    exit(); 
 }
 
 include_once(__DIR__ . "../../../config/rutas.php");
@@ -13,7 +13,7 @@ include_once '../../Models/conexionModel.php';
 include_once '../../Models/UsuarioModel.php';
 
 $datos = new UsuarioModel();
-$id = $_SESSION['id']; // Agregamos esta línea para obtener el ID de la sesión
+$id = $_SESSION['id']; 
 $registros = $datos->getById($id);
 
 function obtenerIniciales($nickname)
@@ -33,7 +33,7 @@ function obtenerIniciales($nickname)
     <div class="container text-center">
         <div class="row">
             <div class="col">
-                <h1>¡Bienvenido! Ahora podrá ingresar sus jugadores</h1>
+                <h1>¡Bienvenido! Ahora podrá Ver Usurario</h1>
             </div>
         </div>
         <div id="layoutAuthentication">
