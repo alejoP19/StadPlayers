@@ -1,10 +1,4 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['id'])) {
-
-//     header("Location:../../index.php");
-// }
-
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
@@ -181,6 +175,8 @@ include_once(BASE_DIR . "../../Views/partials/footer.php");
         if (equipo === "" || liga === "" || continente === "" || pais === "" || posicion === "" || perfil === "") {
             event.preventDefault();
             alert("Por favor, seleccione una opción en todos los campos obligatorios.");
+        } else {
+            alert("¡El jugador se ha creado exitosamente!");
         }
     });
 </script>

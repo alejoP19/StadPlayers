@@ -230,6 +230,11 @@ $copas = $datos->copas();
         if (equipo === "" || liga === "" || continente === "" || pais === "" || posicion === "" || perfil === "") {
             event.preventDefault();
             alert("Por favor, seleccione una opción en todos los campos obligatorios.");
+        } else {
+            var confirmacion = confirm("¿Seguro que desea realizar estos cambios al jugador?");
+            if (!confirmacion) {
+                event.preventDefault();
+            }
         }
     });
 </script>
