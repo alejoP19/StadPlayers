@@ -1,46 +1,46 @@
 <!-- <?php
-session_start();
-if (!isset($_SESSION['id'])) {
-    header("Location: ../../index.php");
-    exit(); // Agregamos exit() para detener la ejecución del código después de redireccionar
-}
+        session_start();
+        if (!isset($_SESSION['id'])) {
+            header("Location: ../../index.php");
+            exit(); // Agregamos exit() para detener la ejecución del código después de redireccionar
+        }
 
-include_once(__DIR__ . "../../../config/rutas.php");
-include_once(BASE_DIR . "../../Views/partials/header.php");
-include_once(BASE_DIR . "../../Views/partials/aside.php");
+        include_once(__DIR__ . "../../../config/rutas.php");
+        include_once(BASE_DIR . "../../Views/partials/header.php");
+        include_once(BASE_DIR . "../../Views/partials/aside.php");
 
-include_once '../../Models/conexionModel.php';
-include_once '../../Models/UsuarioModel.php';
+        include_once '../../Models/conexionModel.php';
+        include_once '../../Models/UsuarioModel.php';
 
-$datos = new UsuarioModel();
+        $datos = new UsuarioModel();
 
-if (isset($_REQUEST['id'])) {
-    $registros = $datos->editar($_REQUEST['id']);
+        if (isset($_REQUEST['id'])) {
+            $registros = $datos->editar($_REQUEST['id']);
 
-    foreach ($registros as $resultado) {
-        $id = $resultado->getId();
-        $email = $resultado->email;
-        $nickname = $resultado->nickname;
-        $password = $resultado->password;
-    }
-} else {
-    // Mostrar error o redireccionar si no se proporciona un ID válido
-    header("Location: ../../index.php");
-    exit();
-}
+            foreach ($registros as $resultado) {
+                $id = $resultado->getId();
+                $email = $resultado->email;
+                $nickname = $resultado->nickname;
+                $password = $resultado->password;
+            }
+        } else {
+            // Mostrar error o redireccionar si no se proporciona un ID válido
+            header("Location: ../../index.php");
+            exit();
+        }
 
-function obtenerIniciales($nickname)
-{
-    $iniciales = '';
-    $palabras = explode(' ', $nickname);
+        function obtenerIniciales($nickname)
+        {
+            $iniciales = '';
+            $palabras = explode(' ', $nickname);
 
-    foreach ($palabras as $palabra) {
-        $iniciales .= strtoupper(substr($palabra, 0, 1));
-    }
+            foreach ($palabras as $palabra) {
+                $iniciales .= strtoupper(substr($palabra, 0, 1));
+            }
 
-    return $iniciales;
-}
-?>
+            return $iniciales;
+        }
+        ?>
 
 <div class="ImgJUGADOR">
     <div class="container text-center">
@@ -65,7 +65,7 @@ function obtenerIniciales($nickname)
                                             $nickname = $row->nickname;
                                             $initials = obtenerIniciales($nickname);
                                             $avatarUrl = "https://place-hold.it/50?text=$initials";
-                                            ?>
+                                    ?>
                                             <div class="mb-3 bg-color1 text-primary">
                                                 <div class="row">
                                                     <div class="col-md-2 mt-3">
@@ -100,13 +100,13 @@ function obtenerIniciales($nickname)
                                             <?php
                                         }
                                     } else {
-                                        ?>
+                                            ?>
                                         <div class="mb-3 bg-color1 text-primary text-center">
                                             Sin datos
                                         </div>
                                         <?php
                                     }
-                                    ?>
+                                        ?>
 
                                 </div>
                             </div>

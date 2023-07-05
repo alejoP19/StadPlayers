@@ -1,6 +1,10 @@
 <?php
 include_once(__DIR__ . "../config/rutas.php");
 session_start();
+if (!isset($_SESSION['id'])) {
+    header("Location: /index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +108,7 @@ text-decoration-color: aqua">
                                             <span></span>
                                             <span></span>
                                             <a class="small"
-                                                href="<?= BASE_URL ?>/Views/usuario/recuperar.php">¿Olvidaste tu
+                                                href="<?= BASE_URL ?>/Views/usuario/Forgot_Password.php">¿Olvidaste tu
                                                 Contraseña?</a>
                                         </button>
                                     </div>

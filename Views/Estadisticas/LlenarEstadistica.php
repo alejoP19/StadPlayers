@@ -1,9 +1,9 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['id'])) {
+session_start();
+if (!isset($_SESSION['id'])) {
 
-//     header("Location:../../index.php");
-// }
+    header("Location:../../index.php");
+}
 
 include_once(__DIR__ . "../../../config/rutas.php");
 session_start();
@@ -40,21 +40,26 @@ $registros = $data->getUltimasEstadisticas();
                                         <?php
                                         if ($registros) {
                                             foreach ($registros as $registro) { ?>
-                                                <div class="col-md-6">
+                                        <div class="col-md-6">
 
-                                                    <div class="col m-4">
-                                                        <hr class="my-4 border border-3 border-primary ">
-                                                        <input class="text-center" type="number" id="estadistica-<?= $registro->getId() ?>" name="estadistica-<?= $registro->getId() ?>" value="<?= $registro->valor ?>" min="0" disabled />
-                                                    </div>
+                                            <div class="col m-4">
+                                                <hr class="my-4 border border-3 border-primary ">
+                                                <input class="text-center" type="number"
+                                                    id="estadistica-<?= $registro->getId() ?>"
+                                                    name="estadistica-<?= $registro->getId() ?>"
+                                                    value="<?= $registro->valor ?>" min="0" disabled />
+                                            </div>
 
-                                                    <a class="btn btn-sm btn-danger" onclick="operacion(<?= $registro->getId() ?> ,'restar')">-</a>
+                                            <a class="btn btn-sm btn-danger"
+                                                onclick="operacion(<?= $registro->getId() ?> ,'restar')">-</a>
 
-                                                    <label for="" class="form-label"><?= $registro->nombre ?></label>
+                                            <label for="" class="form-label"><?= $registro->nombre ?></label>
 
 
-                                                    <a class="btn btn-sm btn-success" onclick="operacion(<?= $registro->getId() ?>,'sumar')">+</a>
+                                            <a class="btn btn-sm btn-success"
+                                                onclick="operacion(<?= $registro->getId() ?>,'sumar')">+</a>
 
-                                                </div>
+                                        </div>
 
                                         <?php }
                                         }
@@ -87,38 +92,38 @@ $registros = $data->getUltimasEstadisticas();
     </div>
 </div>
 <script>
-    function operacion(id, tipo_operacion) {
-        // console.log("holi")
-        let elemento = document.getElementById(`estadistica-${id}`);
-        let valor = tipo_operacion == "restar" ? parseInt(elemento.value) - 1 : parseInt(elemento.value) + 1;
+function operacion(id, tipo_operacion) {
+    // console.log("holi")
+    let elemento = document.getElementById(`estadistica-${id}`);
+    let valor = tipo_operacion == "restar" ? parseInt(elemento.value) - 1 : parseInt(elemento.value) + 1;
 
 
-        if (valor >= 0) {
-            update(id, elemento, valor)
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'La estadística no puede ser negativa',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true
-            });
-        }
+    if (valor >= 0) {
+        update(id, elemento, valor)
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'La estadística no puede ser negativa',
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true
+        });
     }
+}
 
-    function update(id, elemento, valor) {
-        console.log(id, elemento.value, valor)
-        axios.post(`../../Controllers/EstadisticasController.php?c=2&id=${id}&valor=${valor}`)
-            .then(function(response) {
-                elemento.value = response.data.valor
-            })
-            .catch(function(error) {
-                console.error(error);
-            });
-    }
+function update(id, elemento, valor) {
+    console.log(id, elemento.value, valor)
+    axios.post(`../../Controllers/EstadisticasController.php?c=2&id=${id}&valor=${valor}`)
+        .then(function(response) {
+            elemento.value = response.data.valor
+        })
+        .catch(function(error) {
+            console.error(error);
+        });
+}
 </script>
 
 

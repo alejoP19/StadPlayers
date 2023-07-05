@@ -52,9 +52,10 @@ text-decoration-color: aqua">
                                             Contraseña
                                         </h3>
                                     </div>
-                                    <div class="form-message" id="msg">
-
+                                    <div class="form-message" id="msg" style="background-color:#27025A; border-radius: 10px; margin-left:3%; margin-right:3%;">
                                     </div>
+
+
 
                                     <div class="card-body">
 
@@ -101,11 +102,10 @@ text-decoration-color: aqua">
             $("#forgotPasswordForm").on('submit', function(e) {
                 e.preventDefault();
                 var email = $("#email").val();
-                // alert(email);
-                // return
+
                 $.ajax({
                     type: "POST",
-                    url: "olvideContraseña.php",
+                    url: "Enter_Password.php",
 
                     data: {
                         email: email

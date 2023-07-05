@@ -1,8 +1,8 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['id'])) {
-//     header("Location:../../index.php");
-// }
+session_start();
+if (!isset($_SESSION['id'])) {
+    header("Location:../../index.php");
+}
 
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
@@ -48,27 +48,27 @@ $registros = $datos->getAll();
                                             if ($registros) {
                                                 foreach ($registros as $row) {
                                                     ?>
-                                                    <tr>
-                                                        <td>
-                                                            <?= $pos ?>
-                                                        </td>
-                                                        <td>
-                                                            <?= $row->nombre_completo ?>
-                                                        </td>
-                                                        <td>
-                                                            <a class="btn btn-warning" href="guardar.php?id=<?= $row->id ?>">Ver
-                                                                Jugador</a>
-                                                            -
-                                                            <a class="btn btn-success"
-                                                                href="../../Controllers/jugadorController.php?c=2&id=<?= $row->getId() ?>"
-                                                                onclick="return confirm('¿Estás seguro de que deseas actualizar la información de este jugador?')">Actualizar</a>
-                                                            -
-                                                            <a class="btn btn-danger"
-                                                                href="../../Controllers/JugadorController.php?c=4&id=<?= $row->getId() ?>"
-                                                                onclick="return confirm('¿Estás seguro de que deseas eliminar este jugador?')">Eliminar</a>
-                                                        </td>
-                                                    </tr>
-                                                    <?php
+                                            <tr>
+                                                <td>
+                                                    <?= $pos ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row->nombre_completo ?>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-warning" href="guardar.php?id=<?= $row->id ?>">Ver
+                                                        Jugador</a>
+                                                    -
+                                                    <a class="btn btn-success"
+                                                        href="../../Controllers/jugadorController.php?c=2&id=<?= $row->getId() ?>"
+                                                        onclick="return confirm('¿Estás seguro de que deseas actualizar la información de este jugador?')">Actualizar</a>
+                                                    -
+                                                    <a class="btn btn-danger"
+                                                        href="../../Controllers/JugadorController.php?c=4&id=<?= $row->getId() ?>"
+                                                        onclick="return confirm('¿Estás seguro de que deseas eliminar este jugador?')">Eliminar</a>
+                                                </td>
+                                            </tr>
+                                            <?php
                                                     $pos++;
                                                 }
                                             } else {

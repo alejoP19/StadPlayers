@@ -72,7 +72,8 @@ class EstadisticasModel extends stdClass
     public function getPlayers()
     {
 
-        $sql = "SELECT id, nombre_completo, id_usuario FROM jugadores";
+        $this->id_usuario = $_SESSION['id'];
+        $sql = "SELECT id, nombre_completo, id_usuario FROM jugadores WHERE id_usuario ='$this->id_usuario'";
         try {
             $items = [];
             $query = $this->db->conect()->query($sql);

@@ -15,7 +15,7 @@ if (isset($_POST['email']) || ($_POST['password']) || ($_POST['confirmPassword']
 
     if (empty($password) || empty($confirmPassword)) {
 
-        echo "Espacio Vacio, debe llenarlo";
+        echo "<div style='color:#FF0000 ;font-size: 20px; text-align:center;  margin-left:2%;margin-top:2%'> <strong>Espacio Vacio, debe llenarlo</strong></div>";
     } else {
 
         if ($password == $confirmPassword) {
@@ -28,10 +28,10 @@ if (isset($_POST['email']) || ($_POST['password']) || ($_POST['confirmPassword']
             $queryDelete = "DELETE FROM olvido_password  WHERE email  = '$email'";
             $query = $db->conect()->query($queryDelete);
 
-            echo "<div style='color:#00FFFA; margin-left:2%;margin-top:2%'> <strong><h5>¡Su Contraseña Ha Sido actualizada Correctamente! 
-            Haga Click <a href='../../index.php?'> Aquí  <a />para Iniciar Sesión</h5></strong></div>";
+            echo "<div style='color: #00FFFA ;font-size: 20px; text-align:center; margin-left:2%;margin-top:2%'> <strong>¡Su Contraseña Ha Sido actualizada Correctamente! 
+            Haga Click <a href='../../index.php?'> Aquí  <a />para Iniciar Sesión</strong></div>";
         } else {
-            echo "<div style='color:#00FFFA; margin-left:2%;margin-top:2%'> <strong><h3>Las Contraseñas no Concuerdan.<h3></strong></div>";
+            echo "<div style='color:#FF0000 ;font-size: 22px; text-align:center; margin-left:2%;margin-top:2%'> <strong>Las Contraseñas no Concuerdan.</strong></div>";
         }
     }
 }

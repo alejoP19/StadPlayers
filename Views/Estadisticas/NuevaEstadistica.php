@@ -1,9 +1,9 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['id'])) {
+session_start();
+if (!isset($_SESSION['id'])) {
 
-//     header("Location:../../index.php");
-// }
+    header("Location:../../index.php");
+}
 
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
