@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['id'])) {
     header("Location: ../../index.php");
-    exit(); // Agregamos exit() para detener la ejecución del código después de redireccionar
+    exit(); 
 }
 
 include_once(__DIR__ . "../../../config/rutas.php");
@@ -13,8 +13,8 @@ include_once '../../Models/conexionModel.php';
 include_once '../../Models/UsuarioModel.php';
 
 $datos = new UsuarioModel();
-$id = $_SESSION['id']; // Agregamos esta línea para obtener el ID de la sesión
-// $registros = $datos->getById($id);
+$id = $_SESSION['id']; 
+$registros = $datos->getById($id);
 
 function obtenerIniciales($nickname)
 {
@@ -33,7 +33,7 @@ function obtenerIniciales($nickname)
     <div class="container text-center">
         <div class="row">
             <div class="col">
-                <h1>¡Bienvenido! Ahora podrá ingresar sus jugadores</h1>
+                <h1>¡Bienvenido! Ahora podrá Ver Usurario</h1>
             </div>
         </div>
         <div id="layoutAuthentication">
@@ -52,37 +52,37 @@ function obtenerIniciales($nickname)
                                             $nickname = $row->nickname;
                                             $initials = obtenerIniciales($nickname);
                                             $avatarUrl = "https://place-hold.it/50?text=$initials";
-                                    ?>
-                                    <div class="mb-3 bg-color1 text-primary">
-                                        <div class="row">
-                                            <div class="col-md-2 mt-3">
-                                                <div class="avatar-circle">
-                                                    <h1>
-                                                        <?= $initials ?>
-                                                    </h1>
+                                            ?>
+                                            <div class="mb-3 bg-color1 text-primary">
+                                                <div class="row">
+                                                    <div class="col-md-2 mt-3">
+                                                        <div class="avatar-circle">
+                                                            <h1>
+                                                                <?= $initials ?>
+                                                            </h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 mt-3 text-black">
+                                                        <div class="card bg-dark text-light mt-2 pt-2 pb-2">
+                                                            <strong>Email:</strong>
+                                                            <br>
+                                                            <?= $row->email ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 mt-3 text-black">
+                                                        <div class="card bg-dark text-light mt-2 pt-2 pb-2">
+                                                            <strong>Nickname:</strong>
+                                                            <br>
+                                                            <?= $row->nickname ?>
+                                                        </div>
+                                                    </div>
+                                                    
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 mt-3 text-black">
-                                                <div class="card bg-dark text-light mt-2 pt-2 pb-2">
-                                                    <strong>Email:</strong>
-                                                    <br>
-                                                    <?= $row->email ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 mt-3 text-black">
-                                                <div class="card bg-dark text-light mt-2 pt-2 pb-2">
-                                                    <strong>Nickname:</strong>
-                                                    <br>
-                                                    <?= $row->nickname ?>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="btn btn-sm btn-outline-primary" href="../jugadores/index.php">Regresar
-                                        </a>
-                                        <!-- <a class="btn btn-danger"
+                                            <div class="text-center">
+                                                <a class="btn btn-sm btn-outline-primary" href="../jugadores/index.php">Regresar
+                                                </a>
+                                                <!-- <a class="btn btn-danger"
                                                     href="../../Controllers/UsuarioController.php?c=2&id=<?= $row->getId() ?>">Eliminar
                                                 </a>
                                                 <a class="btn btn-warning"
@@ -91,8 +91,8 @@ function obtenerIniciales($nickname)
                                                 <a class="btn btn-warning"
                                                     href="../../Controllers/UsuarioController.php?c=3&id=<?= $row->getId() ?>">Actualizar
                                                 </a> -->
-                                    </div>
-                                    <?php
+                                            </div>
+                                            <?php
                                         }
                                     } else {
                                         ?>
@@ -114,28 +114,28 @@ function obtenerIniciales($nickname)
 </div>
 
 <style>
-.avatar-circle {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-}
+    .avatar-circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
 
-.avatar-circle h1 {
-    font-size: 80px;
-    color: #fff;
-    text-transform: uppercase;
-    margin: 0;
-}
+    .avatar-circle h1 {
+        font-size: 80px;
+        color: #fff;
+        text-transform: uppercase;
+        margin: 0;
+    }
 
-.card {
-    padding: 10px;
-    text-align: center;
-}
+    .card {
+        padding: 10px;
+        text-align: center;
+    }
 </style>
 
 <?php

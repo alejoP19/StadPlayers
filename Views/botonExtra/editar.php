@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 session_start();
 if (!isset($_SESSION['id'])) {
     header("Location: ../../index.php");
@@ -145,4 +145,4 @@ function obtenerIniciales($nickname)
 
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");
-?>
+?> -->
